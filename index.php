@@ -34,10 +34,10 @@
             <a class="nav-link" href="">Pets Wanted</a>
         </li>
         <li class="nav-item float-xs-right">
-            <a class="nav-link" href="">Register</a>
+            <a class="nav-link" href="register.html">Register</a>
         </li>
         <li class="nav-item float-xs-right">
-            <a class="nav-link" href="">Login</a>
+            <a class="nav-link" href="login.html">Login</a>
         </li>
     </ul>
 </nav>
