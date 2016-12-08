@@ -78,16 +78,16 @@
         <div class="card">
             <img class="card-img-top img-thumbnail" src="images/dog1.jpg" alt="Card image cap">
             <div class="card-block">
-                <h4 class="card-title">Mitsos</h4>
-                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Open</a>
-            </div>
-            <div class="card-footer text-muted">
-                <p class="card-text float-xs-right">
-                    <small>Last updated 1 mins ago</small>
-                </p>
-            </div>
-        </div>
+            <h4 class="card-title">Mitsos</h4>
+            <p class="card-text" > This is a longer card with supporting text below as a natural lead - in to additional content .</p >
+                <a href = "#" class="btn btn-primary" > Open</a >
+            </div >
+            <div class="card-footer text-muted" >
+                <p class="card-text float-xs-right" >
+                    <small > Last updated 1 mins ago </small >
+                </p >
+            </div >
+        </div >
         <div class="card">
             <img class="card-img-top img-thumbnail" src="images/dog2.jpg" alt="Card image cap">
             <div class="card-block">
