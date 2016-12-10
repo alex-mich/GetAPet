@@ -13,7 +13,7 @@
 </head>
 
 <body>
-<?php include 'dbConnect.php';?>
+<?php include '../misc/dbConnect.php';?>
 
 <!-- Navigation Bar -->
 <nav class="navbar navbar-light bg-faded">
@@ -35,10 +35,10 @@
             <a class="nav-link" href="">Pets Wanted</a>
         </li>
         <li class="nav-item float-xs-right">
-            <a class="nav-link" href="register.html">Register</a>
+            <a class="nav-link" href="register.php">Register</a>
         </li>
         <li class="nav-item float-xs-right">
-            <a class="nav-link" href="login.html">Login</a>
+            <a class="nav-link" href="login.php">Login</a>
         </li>
     </ul>
 </nav>
@@ -52,13 +52,13 @@
     </ol>
     <div class="carousel-inner" role="listbox">
         <div class="carousel-item active">
-            <img class="d-block mx-auto" max-width="100%" max-height="100%" src="images/welcome.jpg" alt="First slide">
+            <img class="d-block mx-auto" max-width="100%" max-height="100%" src="../images/welcome.jpg" alt="First slide">
         </div>
         <div class="carousel-item">
-            <img class="d-block mx-auto" max-width="100%" max-height="100%" src="images/welcome.jpg"  alt="Second slide">
+            <img class="d-block mx-auto" max-width="100%" max-height="100%" src="../images/welcome.jpg" alt="Second slide">
         </div>
         <div class="carousel-item">
-            <img class="d-block mx-auto" max-width="100%" max-height="100%" src="images/welcome.jpg"  alt="Third slide">
+            <img class="d-block mx-auto" max-width="100%" max-height="100%" src="../images/welcome.jpg" alt="Third slide">
         </div>
     </div>
     <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
@@ -83,7 +83,7 @@
 
         foreach ($rows as $row){?>
         <div class="card">
-            <img class="card-img-top img-thumbnail" src="images/dog1.jpg" alt="Card image cap">
+            <img class="card-img-top img-thumbnail" src="../images/dog1.jpg" alt="Card image cap">
             <div class="card-block">
             <h4 class="card-title"><?= $row['pet_type']?></h4>
             <p class="card-text" ><?= $row['advert_details']?></p >
