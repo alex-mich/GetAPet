@@ -83,7 +83,7 @@
 
         foreach ($rows as $row){?>
         <div class="card">
-            <img class="card-img-top img-thumbnail" src="../images/dog1.jpg" alt="Card image cap">
+            <img class="card-img-top img-thumbnail" src="/images/dog1.jpg" alt="Card image cap">
             <div class="card-block">
             <h4 class="card-title"><?= $row['pet_type']?></h4>
             <p class="card-text" ><?= $row['advert_details']?></p >
