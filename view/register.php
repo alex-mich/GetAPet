@@ -11,7 +11,7 @@
 <body>
 <div class="container col-xs-3">
     <h2>Register</h2>
-    <form method="post">
+    <form action="../controller/RegisterMailController.php" method="post">
         <!-- Username -->
         <div class="form-group">
             <label for="username" class="col-form-label">Username:</label>
@@ -41,7 +41,7 @@
         <div class="form-group">
             <label for="email" class="col-form-label">Email</label>
             <div class="input-group">
-                <input type="email" class="form-control" name="re_enter_psswd" id="email" placeholder="Email"/>
+                <input type="email" class="form-control" name="user_email" id="email" placeholder="Email"/>
                 <span class="input-group-addon glyphicon glyphicon-lock"/>
             </div>
         </div>
