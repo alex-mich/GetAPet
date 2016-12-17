@@ -12,7 +12,7 @@
 
 <div class="container col-xs-3">
     <h2>Login</h2>
-    <form method="post">
+    <form method="post" action="../controller/loginController.php">
         <!-- Username -->
         <div class="form-group">
             <label for="username" class="col-form-label">Username:</label>

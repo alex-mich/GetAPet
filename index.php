@@ -13,7 +13,11 @@
 </head>
 
 <body>
-<?php include 'misc/dbConnect.php'; ?>
+<?php
+session_start();
+include 'misc/dbConnect.php';
+include 'model/login/User.php';
+?>
 
 <!-- Navigation Bar -->
 <nav class="navbar navbar-light bg-faded">
@@ -37,9 +41,21 @@
         <li class="nav-item float-xs-right">
             <a class="nav-link" href="view/register.php">Register</a>
         </li>
-        <li class="nav-item float-xs-right">
-            <a class="nav-link" href="view/login.php">Login</a>
-        </li>
+        <?php
+        if (isset($_SESSION["login"])) {
+            $user = $_SESSION["login"];
+            $userLogin = unserialize($user);
+            ?>
+            <li class="nav-item float-xs-right">
+                <a class="nav-link" href="controller/logoutController.php"><?= $userLogin->getUsername() ?></a>
+            </li>
+            <?php
+        } else {
+            ?>
+            <li class="nav-item float-xs-right">
+                <a class="nav-link" href="view/login.php">Login</a>
+            </li>
+        <?php } ?>
     </ul>
 </nav>
 

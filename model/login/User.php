@@ -8,16 +8,17 @@
  */
 class User
 {
-
     private $userId;
     private $firstName;
     private $lastName;
     private $username;
     private $password;
+    private $address;
     private $email;
     private $accountType;
     private $telephone;
     private $userPhoto;
+    private $isActive;
 
     /**
      * User constructor.
@@ -28,10 +29,12 @@ class User
      * @param $password - the password
      * @param $email    - the user's email
      * @param $accountType - type of account (0 for petter, 1 for getter, 2 for both)
+     * @param $address - user's address
      * @param $telephone    - the telephone
      * @param $userPhoto    - photo of the user
+     * @param $isActive    - whether the user has activated the account
      */
-    public function __construct($userId, $firstName, $lastName, $username, $password, $email, $accountType, $telephone, $userPhoto)
+    public function __construct($userId, $firstName, $lastName, $username, $password, $email, $accountType,$address, $telephone, $userPhoto, $isActive)
     {
         $this->userId = $userId;
         $this->firstName = $firstName;
@@ -40,8 +43,11 @@ class User
         $this->password = $password;
         $this->email = $email;
         $this->accountType = $accountType;
+        $this->address = $address;
         $this->telephone = $telephone;
         $this->userPhoto = $userPhoto;
+        $this->isActive = $isActive;
+
     }
 
     /**
@@ -188,6 +194,20 @@ class User
         $this->userPhoto = $userPhoto;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
+    }
 
+    /**
+     * @param mixed $isActive
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+    }
 
 }
