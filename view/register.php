@@ -50,16 +50,16 @@
             <label class="col-form-label">Account Type</label>
             <fieldset class="form-group">
                 <label class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="petterRadioButton" id="petterRadioButton"
-                           value="petter"> Petter
+                    <input class="form-check-input" type="radio" name="accountType" id="petterRadioButton"
+                           value="0"> Petter
                 </label>
                 <label class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="getterRadioButton" id="getterRadioButton"
-                           value="getter"> Getter
+                    <input class="form-check-input" type="radio" name="accountType" id="getterRadioButton"
+                           value="1"> Getter
                 </label>
                 <label class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="bothRadioButton" id="bothRadioButton"
-                           value="both"> Both
+                    <input class="form-check-input" type="radio" name="accountType" id="bothRadioButton"
+                           value="2"> Both
                 </label>
             </fieldset>
         </div>

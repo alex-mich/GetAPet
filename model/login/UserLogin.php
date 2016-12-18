@@ -23,7 +23,7 @@ class UserLogin
             die("$conn->connect_errno: $conn->connect_error");
         }
 
-        $query = "select * from users where username=(?)";
+        $query = "select * from users where username = (?)";
 
         $statement = $conn->stmt_init();
         if (!$statement->prepare($query)) {
