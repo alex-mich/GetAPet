@@ -11,7 +11,7 @@
 <body>
 <div class="container col-xs-3">
     <h2>Register</h2>
-    <form action="../controller/RegisterMailController.php" method="post">
+    <form action="../controller/registerController.php" method="post">
         <!-- Username -->
         <div class="form-group">
             <label for="username" class="col-form-label">Username:</label>
@@ -63,11 +63,19 @@
                 </label>
             </fieldset>
         </div>
-        <!-- Real Name -->
+        <!-- First Name -->
         <div class="form-group">
-            <label for="realName" class="col-form-label">Real Name</label>
+            <label for="firstName" class="col-form-label">First Name</label>
             <div class="input-group">
-                <input type="text" class="form-control" name="realName" id="realName" placeholder="First & Last Name"/>
+                <input type="text" class="form-control" name="firstName" id="firstName" placeholder="First Name"/>
+                <span class="input-group-addon glyphicon glyphicon-lock"/>
+            </div>
+        </div>
+        <!-- Last Name -->
+        <div class="form-group">
+            <label for="lastName" class="col-form-label">Last Name</label>
+            <div class="input-group">
+                <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Last Name"/>
                 <span class="input-group-addon glyphicon glyphicon-lock"/>
             </div>
         </div>

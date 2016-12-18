@@ -19,6 +19,7 @@ class User
     private $telephone;
     private $userPhoto;
     private $isActive;
+    private $emailCode;
 
     /**
      * User constructor.
@@ -33,8 +34,9 @@ class User
      * @param $telephone    - the telephone
      * @param $userPhoto    - photo of the user
      * @param $isActive    - whether the user has activated the account
+     * @param $emailCode    - email code for verification
      */
-    public function __construct($userId, $firstName, $lastName, $username, $password, $email, $accountType,$address, $telephone, $userPhoto, $isActive)
+    public function __construct($userId, $firstName, $lastName, $username, $password, $email, $accountType,$address, $telephone, $userPhoto, $isActive, $emailCode)
     {
         $this->userId = $userId;
         $this->firstName = $firstName;
@@ -47,7 +49,7 @@ class User
         $this->telephone = $telephone;
         $this->userPhoto = $userPhoto;
         $this->isActive = $isActive;
-
+        $this->emailCode = $emailCode;
     }
 
     /**

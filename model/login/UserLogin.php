@@ -12,6 +12,7 @@ class UserLogin
     function loadUser($givenUser)
     {
 
+        /** Initiate Connection */
         $host = "localhost";
         $uname = "root";
         $psswd = "root";
@@ -23,6 +24,7 @@ class UserLogin
             die("$conn->connect_errno: $conn->connect_error");
         }
 
+        /** Prepare Select Query*/
         $query = "select * from users where username = (?)";
 
         $statement = $conn->stmt_init();
@@ -33,6 +35,7 @@ class UserLogin
             $statement->execute();
             $resultSet = $statement->get_result();
 
+            /** Handle the result from result set */
             $r = $resultSet->fetch_row();
                 $userId = $r[0];
                 $firstName = $r[1];
@@ -45,10 +48,13 @@ class UserLogin
                 $telephone = $r[8];
                 $userPhoto = $r[9];
                 $isActive = $r[10];
-                $user = new User($userId, $firstName, $lastName, $username, $password, $email, $accountType, $address ,$telephone, $userPhoto, $isActive);
+                $emailCode = $r[11];
+                $user = new User($userId, $firstName, $lastName, $username, $password, $email, $accountType, $address ,$telephone, $userPhoto, $isActive,$emailCode);
             return $user;
         }
 
+        $statement->close();
+        $conn->close();
     }
 
 }

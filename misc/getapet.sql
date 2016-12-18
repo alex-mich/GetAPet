@@ -11,7 +11,7 @@
 DROP TABLE IF EXISTS users;
 
 CREATE TABLE users(
-user_id int(6) NOT NULL DEFAULT 0,
+user_id int(6) NOT NULL AUTO_INCREMENT,
 first_name varchar(40),
 last_name varchar(40),
 username varchar(40),
