@@ -11,10 +11,14 @@ require("../PHPMailer/PHPMailerAutoload.php");
 class SendEMail
 {
     private $userEmail;
+    private $emailCode;
+    private $realName;
 
-    public function __construct($userEmail)
+    public function __construct($userEmail, $emailCode, $realName)
     {
         $this->userEmail = $userEmail;
+        $this->emailCode = $emailCode;
+        $this->realName = $realName;
     }
 
     public function sendMail()
@@ -36,7 +40,9 @@ class SendEMail
 
         $mail->isHTML(true);
         $mail->Subject = "Account activation";
-        $mail->Body = "Click on the link to activate your account.";
+        $mail->Body = "Hello " . $this->realName . ", thanks for registering on our page. Please click on the link below to activate your account.
+          or copy and paste the link to your browser in order to activate your account! http://localhost:8888/controller/activateAccount.php?emailCode=" . $this->emailCode
+         . "&email=" . $this->userEmail;
 
         if ($mail->Send()) {
             echo "Send email succesfully";

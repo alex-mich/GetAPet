@@ -24,9 +24,10 @@ $userEmail = $_POST["user_email"];
 
 
 // If there is not register the user and send activation email.
-$sendMail = new SendEMail($userEmail);
+$emailCode = "12hujeru1233jdkkdlsiidjk";
+$sendMail = new SendEMail($userEmail, $emailCode, $realName);
 $sendMail->sendMail();
-$url = "Location: ../index.php";
+$url = "Location: ../view/preActivation.php";
 header($url);
 ob_end_flush();
 
