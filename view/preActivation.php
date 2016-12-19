@@ -9,6 +9,6 @@
 </head>
 <body>
 <p>Mastora we have send you an email! Kane ena kopo and click on the link inside the mail!</p>
-<label class="col-form-label" >Go to Login:</label>
+<label class="col-form-label" ><a href="../view/login.php"> Go to Login:</a></label>
 </body>
 </html>

@@ -95,6 +95,7 @@ include 'model/login/User.php';
         <?php
         //        echo $date = date("Y-m-d G:i:s");
         $cardsQuery = "select * from pets order by time DESC limit 4";
+        $db = getConnection();
         $rows = $db->query($cardsQuery);
 
         foreach ($rows as $row) {

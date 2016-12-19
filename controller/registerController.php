@@ -5,13 +5,15 @@
  * Date: 18/12/2016
  * Time: 19:03 μμ
  */
+ob_start();
 
 include "../model/login/UserRegister.php";
+include "../Model/SendEMail.php";
 
 $username = $_POST["username"];
 $password = $_POST["password"];
 //TODO HANDLE RE-ENTER PASSWORD
-$user_email = $_POST["user_email"];
+$userEmail = $_POST["user_email"];
 $accountType = $_POST["accountType"];
 $firstName = $_POST["firstName"];
 $lastName = $_POST["lastName"];
@@ -21,11 +23,25 @@ $address = $_POST["address"];
 
 //TODO ADD PHOTO TO METHOD
 $userRegister = new UserRegister();
-//TODO HANDLE SUCCESS OF FAILURE
-$success = $userRegister->registerUser($username, $password, $user_email, $accountType, $firstName, $lastName, $telephone, $address);
+/** Create Verification Code */
+$emailCode = md5($username + microtime());
 
-$url = "Location: ../view/preActivation.php";
-header($url);
+//TODO HANDLE SUCCESS OF FAILURE
+$success = $userRegister->registerUser($username, $password, $userEmail, $accountType, $firstName, $lastName, $telephone, $address, $emailCode);
+
+if ($success == 1){
+    $sendMail = new SendEMail($userEmail, $emailCode, $firstName);
+    $sendMail->sendMail();
+    $url = "Location: ../view/preActivation.php";
+    header($url);
+    ob_end_flush();
+} else {
+    $url = "Location: ../view/register.php";
+    header($url);
+    ob_end_flush();
+}
+
+
 
 
 

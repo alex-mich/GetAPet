@@ -6,13 +6,19 @@
  * Time: 11:11 μμ
  */
 
-    $serverName = "localhost";
-    $username = "root";
-    $password = "root";
+function getConnection()
+{
+    /** Initiate Connection */
+    $host = "localhost";
+    $uname = "root";
+    $psswd = "root";
+    $dbname = "getapet";
 
-    // Create connection
-    try{
-        $db = new PDO("mysql:dbname=getapet;host=$serverName", $username, $password);
-    } catch (PDOException $e){
-        echo "Connection failed." . $e->getMessage();
+    $conn = new mysqli($host, $uname, $psswd, $dbname);
+
+    if ($conn->connect_error) {
+        die("$conn->connect_errno: $conn->connect_error");
     }
+
+    return $conn;
+}

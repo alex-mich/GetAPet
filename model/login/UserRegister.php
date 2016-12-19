@@ -13,7 +13,7 @@ class UserRegister
     private static $photo = null;
     private static $userId = null;
 
-    function registerUser($username, $password, $user_email, $accountType, $firstName, $lastName, $telephone, $address)
+    function registerUser($username, $password, $user_email, $accountType, $firstName, $lastName, $telephone, $address, $emailCode)
     {
         /** Initiate Connection */
         $host = "localhost";
@@ -34,9 +34,6 @@ class UserRegister
         if (!$statement->prepare($query)) {
             print "Failed to prepare statement";
         } else {
-
-            /** Create Verification Code */
-            $emailCode = md5($username + microtime());
 
             /** Bind Params into the Prepared Statement */
             $statement->bind_param("isssssissbis", self::$userId, $firstName, $lastName, $username, $password, $user_email, $accountType, $address, $telephone, self::$photo, self::$isActive, $emailCode);
