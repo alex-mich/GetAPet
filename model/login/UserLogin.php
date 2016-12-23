@@ -15,7 +15,7 @@ class UserLogin
         /** Initiate Connection */
         $host = "localhost";
         $uname = "root";
-        $psswd = "root";
+        $psswd = null;
         $dbname = "getapet";
 
         $conn = new mysqli($host, $uname, $psswd, $dbname);

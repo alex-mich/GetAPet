@@ -8,7 +8,8 @@
 
 
 -- Table structure for table users
-DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS PETS;
+DROP TABLE IF EXISTS USERS;
 
 CREATE TABLE users(
 user_id int(6) NOT NULL AUTO_INCREMENT,
@@ -37,10 +38,9 @@ INSERT INTO users VALUES
 UNLOCK TABLES;
 
 -- Table structure for table pets
-DROP TABLE IF EXISTS pets;
 
 CREATE TABLE pets(
-pet_id int(6) NOT NULL DEFAULT 0,
+pet_id int(6) NOT NULL AUTO_INCREMENT,
 user_id int(6) NOT NULL DEFAULT 0,
 pet_type varchar(40),
 pet_breed varchar(40),
@@ -49,7 +49,8 @@ advert_type int(1),
 advert_details varchar (200),
 pet_photo longblob,
 time DATETIME,
-PRIMARY KEY (pet_id)
+PRIMARY KEY (pet_id),
+FOREIGN KEY (user_id) REFERENCES USERS(user_id)
 );
 
 LOCK TABLES pets WRITE;

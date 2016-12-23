@@ -15,8 +15,8 @@
 <body>
 <?php
 session_start();
-include 'misc/dbConnect.php';
 include 'model/login/User.php';
+include 'database/DatabaseConnection.php';
 ?>
 
 <!-- Navigation Bar -->
@@ -37,6 +37,9 @@ include 'model/login/User.php';
         </li>
         <li class="nav-item">
             <a class="nav-link" href="">Pets Wanted</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="view/AddPet.php">Add Pet</a>
         </li>
         <li class="nav-item float-xs-right">
             <a class="nav-link" href="view/register.php">Register</a>
@@ -94,8 +97,8 @@ include 'model/login/User.php';
     <div class="card-deck">
         <?php
         //        echo $date = date("Y-m-d G:i:s");
+        $db = DatabaseConnection::getInstance();
         $cardsQuery = "select * from pets order by time DESC limit 4";
-        $db = getConnection();
         $rows = $db->query($cardsQuery);
 
         foreach ($rows as $row) {
