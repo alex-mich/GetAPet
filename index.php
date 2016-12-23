@@ -38,17 +38,17 @@ include 'database/DatabaseConnection.php';
         <li class="nav-item">
             <a class="nav-link" href="">Pets Wanted</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="view/AddPet.php">Add Pet</a>
-        </li>
-        <li class="nav-item float-xs-right">
-            <a class="nav-link" href="view/register.php">Register</a>
-        </li>
         <?php
         if (isset($_SESSION["login"])) {
             $user = $_SESSION["login"];
             $userLogin = unserialize($user);
             ?>
+            <li class="nav-item">
+                <a class="nav-link" href="view/AddPet.php">Add Pet</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="view/MyAdverts.php">My Advertisements</a>
+            </li>
             <li class="nav-item float-xs-right">
                 <a class="nav-link" href="controller/logoutController.php"><?= $userLogin->getUsername() ?></a>
             </li>
@@ -57,6 +57,9 @@ include 'database/DatabaseConnection.php';
             ?>
             <li class="nav-item float-xs-right">
                 <a class="nav-link" href="view/login.php">Login</a>
+            </li>
+            <li class="nav-item float-xs-right">
+                <a class="nav-link" href="view/register.php">Register</a>
             </li>
         <?php } ?>
     </ul>
@@ -96,7 +99,6 @@ include 'database/DatabaseConnection.php';
 <div class="card-deck-wrapper">
     <div class="card-deck">
         <?php
-        //        echo $date = date("Y-m-d G:i:s");
         $db = DatabaseConnection::getInstance();
         $cardsQuery = "select * from pets order by time DESC limit 4";
         $rows = $db->query($cardsQuery);
@@ -104,7 +106,7 @@ include 'database/DatabaseConnection.php';
         foreach ($rows as $row) {
             ?>
             <div class="card">
-                <img class="card-img-top img-thumbnail" src="/images/dog1.jpg" alt="Card image cap">
+                <img class="card-img-top img-thumbnail" src="images/dog1.jpg" alt="Card image cap">
                 <div class="card-block">
                     <h4 class="card-title"><?= $row['pet_type'] ?></h4>
                     <p class="card-text"><?= $row['advert_details'] ?></p>

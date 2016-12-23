@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: kOrO
+ * User: A.Michailidis
  * Date: 23/12/2016
  * Time: 3:58 μμ
  */
@@ -32,7 +32,7 @@ if (!$statement->prepare($query)) {
     $user_id = 1;
 
     /** Bind Params into the Prepared Statement */
-    $statement->bind_param("iisssbsis", $pet_id, $user_id, $petType, $petBreed, $petAge, $advertType, $advertDetails, $pet_photo, $advert_date);
+    $statement->bind_param("iisssisis", $pet_id, $user_id, $petType, $petBreed, $petAge, $advertType, $advertDetails, $pet_photo, $advert_date);
     $statement->execute();
 }
 

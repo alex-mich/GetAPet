@@ -44,7 +44,7 @@
             <label class="col-form-label">Advert Type</label>
             <fieldset class="form-group">
                 <label class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="advert_type" id="optionradios1" value="0"> For
+                    <input class="form-check-input" type="radio" name="advert_type" id="optionradios1" value="0">For
                     Sale
                 </label>
                 <label class="form-check-inline">
@@ -54,17 +54,17 @@
             </fieldset>
         </div>
         <!--text area-->
-        <div class="form-group"
-        <label for="textarea">Full advert details</label>
-        <textarea class="form-control" name="advert_details" id="textarea" rows="4"></textarea>
-</div>
-<!-- Add Pet Picture -->
-<div class="form-group">
-    <label for="imageInput">Pet Picture</label>
-    <input type="file" class="form-control-file" id="imageInput">
-</div>
-<button type="submit" class="btn btn-primary">Submit</button>
-</form>
+        <div class="form-group">
+            <label for="textarea">Full advert details</label>
+            <textarea class="form-control" name="advert_details" id="textarea" rows="4"></textarea>
+        </div>
+        <!-- Add Pet Picture -->
+        <div class="form-group">
+            <label for="imageInput">Pet Picture</label>
+            <input type="file" class="form-control-file" id="imageInput">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 </div>
 
 </body>
