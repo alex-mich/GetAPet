@@ -10,15 +10,14 @@ class UserRegister
 {
 
     private static $isActive = 0;
-    private static $photo = null;
     private static $userId = null;
 
-    function registerUser($username, $password, $user_email, $accountType, $firstName, $lastName, $telephone, $address, $emailCode)
+    function registerUser($username, $password, $user_email, $accountType, $firstName, $lastName, $telephone, $address, $emailCode, $file)
     {
         /** Initiate Connection */
         $host = "localhost";
         $uname = "root";
-        $psswd = root;
+        $psswd = null;
         $dbname = "getapet";
 
         $conn = new mysqli($host, $uname, $psswd, $dbname);
@@ -36,7 +35,8 @@ class UserRegister
         } else {
 
             /** Bind Params into the Prepared Statement */
-            $statement->bind_param("isssssissbis", self::$userId, $firstName, $lastName, $username, $password, $user_email, $accountType, $address, $telephone, self::$photo, self::$isActive, $emailCode);
+            $statement->bind_param("isssssissbis", self::$userId, $firstName, $lastName, $username, $password, $user_email, $accountType, $address, $telephone, $file, self::$isActive, $emailCode);
+            $statement->send_long_data(9, $file);
             $success = $statement->execute();
 
             return $success;

@@ -12,7 +12,7 @@
 
 <div class="container col-xs-3">
     <h2>Login</h2>
-    <form method="post" action="../controller/loginController.php">
+    <form id="loginForm" method="post" action="../controller/loginController.php">
         <!-- Username -->
         <div class="form-group">
             <label for="username" class="col-form-label">Username:</label>
@@ -36,6 +36,37 @@
         <!-- Sign-In Button -->
         <button type="submit" class="btn btn-primary">Sign In</button>
     </form>
+    <script type="text/javascript" src="../lib/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="../lib/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../lib/formValidation.min.js"></script>
+    <script type="text/javascript" src="../lib/validation.bootstrap.min.js"></script>
+
+    <script>$(document).ready(function () {
+            $('#loginForm').formValidation({
+                framework: 'bootstrap',
+                icon: {
+                    valid: 'glyphicon glyphicon-ok',
+                    invalid: 'glyphicon glyphicon-remove',
+                    validating: 'glyphicon glyphicon-refresh'
+                },
+                fields: {
+                    username: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Username field can not be empty'
+                            }
+                        }
+                    },
+                    password: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Password field can not be empty'
+                            }
+                        }
+                    }
+                }
+            });
+        });</script>
 </div>
 
 </body>

@@ -12,22 +12,21 @@ include "../Model/SendEMail.php";
 
 $username = $_POST["username"];
 $password = $_POST["password"];
-//TODO HANDLE RE-ENTER PASSWORD
 $userEmail = $_POST["user_email"];
 $accountType = $_POST["accountType"];
 $firstName = $_POST["firstName"];
 $lastName = $_POST["lastName"];
 $telephone = $_POST["telephone"];
 $address = $_POST["address"];
-//TODO HANDLE USER PHOTO
 
-//TODO ADD PHOTO TO METHOD
+$file = addslashes($_FILES["image"]["tmp_name"]);
+$file = file_get_contents($file);
+
 $userRegister = new UserRegister();
 /** Create Verification Code */
 $emailCode = md5($username + microtime());
 
-//TODO HANDLE SUCCESS OF FAILURE
-$success = $userRegister->registerUser($username, $password, $userEmail, $accountType, $firstName, $lastName, $telephone, $address, $emailCode);
+$success = $userRegister->registerUser($username, $password, $userEmail, $accountType, $firstName, $lastName, $telephone, $address, $emailCode, $file);
 
 if ($success == 1){
     $sendMail = new SendEMail($userEmail, $emailCode, $firstName);
