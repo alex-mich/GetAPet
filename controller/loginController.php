@@ -26,7 +26,7 @@ $currentLogin = $user;
 $previousLogin = serialize($currentLogin);
 $_SESSION["login"] = $previousLogin;
 
-$url = "Location: ../index.php";
+$url = "Location: ../view/userProfile.php";
 header($url);
 
 

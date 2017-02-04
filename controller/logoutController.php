@@ -10,7 +10,7 @@ session_start();
 
 unset($_SESSION["login"]);
 
-$url = "Location: ../index.php";
+$url = "Location: ../view/login.php";
 header($url);
 
 

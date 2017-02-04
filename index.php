@@ -113,7 +113,11 @@ include 'database/DatabaseConnection.php';
                 <div class="card-block">
                     <h4 class="card-title"><?= $row['pet_type'] ?></h4>
                     <p class="card-text"><?= $row['advert_details'] ?></p>
-                    <a href="#" class="btn btn-primary"> Open</a>
+                    <form method="GET" action="view/petFullView.php">
+                        <button type="submit" class="btn btn-primary" name="details_adv"
+                                value="<?= $row['pet_id'] ?>">See Details
+                        </button>
+                    </form>
                 </div>
                 <div class="card-footer text-muted">
                     <p class="card-text float-xs-right">

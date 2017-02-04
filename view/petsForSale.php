@@ -19,7 +19,7 @@ $statement = $conn->stmt_init();
 if (!$statement->prepare($query)) {
     echo "Try again later";
 } else {
-    $statement->bind_param("s", $userId);
+//    $statement->bind_param("s", $userId);
     $statement->execute();
     $result = $statement->get_result();
     while ($row = $result->fetch_assoc()) {
