@@ -26,10 +26,10 @@ if (isset($_SESSION["login"])) {
     $loggedUser = unserialize($currentLogin);
 
     $conn = DatabaseConnection::getInstance();
-    $cardsQuery = "select * from pets WHERE user_id = (?) order by time";
+    $query = "select * from pets WHERE user_id = (?) order by time DESC ";
 
     $statement = $conn->stmt_init();
-    if (!$statement->prepare($cardsQuery)) {
+    if (!$statement->prepare($query)) {
         echo "Try again later";
     } else {
         $userId = $loggedUser->getUserId();
@@ -37,6 +37,7 @@ if (isset($_SESSION["login"])) {
         $statement->execute();
         $result = $statement->get_result();
         while ($row = $result->fetch_assoc()) {
+            $advertType = getAdvertType($row['advert_type']);
             ?>
             <div class="card-deck-wrapper">
                 <div class="card-deck">
@@ -44,7 +45,11 @@ if (isset($_SESSION["login"])) {
                         <img class="card-img-top img-thumbnail" src="../images/dog1.jpg" alt="Card image cap">
                         <div class="card-block">
                             <h4 class="card-title"><?= $row['pet_type'] ?></h4>
-                            <p class="card-text"><?= $row["advert_details"] ?></p>
+                            <p class="card-text">Breed: <?= $row["pet_breed"] ?></p>
+                            <p class="card-text">Age: <?= $row["pet_age"] ?></p>
+                            <p class="card-text"> <?= $advertType?></p>
+                            <p class="card-text"> <?= $row["advert_details"]?></p>
+                            <p class="card-text"> Due Time: <?= $row["due_time"]?></p>
                             <form method="get" action="EditPet.php">
                                 <button type="submit" class="btn btn-primary" name="edit_adv"
                                         value="<?= $row['pet_id'] ?>">Edit
@@ -67,6 +72,17 @@ if (isset($_SESSION["login"])) {
         <?php }
     }
 } ?>
+
+<?php
+function getAdvertType($advertType){
+    switch($advertType){
+        case 0:
+            return "For sale";
+        case 1:
+            return "For adoption";
+    }
+}?>
+
 
 </body>
 </html>

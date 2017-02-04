@@ -30,14 +30,14 @@ include 'database/DatabaseConnection.php';
             <a class="nav-link" href="#">Home</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="">Pets for Sale</a>
+            <a class="nav-link" href="view/petsForSale.php">Pets for Sale</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="">Pets for Adoption</a>
+            <a class="nav-link" href="view/petsForAdoption.php">Pets for Adoption</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="">Pets Wanted</a>
-        </li>
+<!--        <li class="nav-item">-->
+<!--            <a class="nav-link" href="">Pets Wanted</a>-->
+<!--        </li>-->
         <?php
         if (isset($_SESSION["login"])) {
             $user = $_SESSION["login"];

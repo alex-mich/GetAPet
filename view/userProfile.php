@@ -58,37 +58,10 @@ if (isset($_SESSION["login"])) {
 
             </div>
     </form>
-
-    <table width="600" border="1">
-        <tr>
-            <th>pet_type</th>
-            <th>pet_breed</th>
-            <th>pet_age</th>
-            <th>advert_type</th>
-            <th>advert_details</th>
-            <th>pet_photo</th>
-            <th>s_date</th>
-            <th>l_date</th>
-        </tr>
-            <?php
-            $db = DatabaseConnection::getInstance();
-            $userId = $userLogin->getUserId();
-            $query = "select * from pets where user_id='$userId'order by time DESC";
-            $rows = $db->query($query);
-
-            foreach ($rows as $row) {
-                ?>
-                <tr>
-                    <td><?= $row['pet_type'] ?></td>
-                    <td><?= $row['pet_breed'] ?></td>
-                    <td><?= $row['pet_age'] ?></td>
-                    <td><?= $row['advert_type'] ?></td>
-                    <td><?= $row['advert_details'] ?></td>
-                    <td><?= $row['pet_photo'] ?></td>
-                    <td><?= $row['time'] ?></td>
-                </tr>
-            <?php } ?>
-    </table>
 </div>
+
+
+    <a href="MyAdverts.php">User advertisements</a>
+
 </body>
 </html>

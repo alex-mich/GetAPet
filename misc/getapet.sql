@@ -49,15 +49,16 @@ advert_type int(1),
 advert_details varchar (200),
 pet_photo longblob,
 time DATETIME,
+due_time DATETIME,
 PRIMARY KEY (pet_id),
 FOREIGN KEY (user_id) REFERENCES USERS(user_id)
 );
 
 LOCK TABLES pets WRITE;
 INSERT INTO pets VALUES
-(1, 2, 'dog', 'kanis', 3, 1, "Please take me to your home, I cook!", 123, "2016-12-09 12:42:13"),
-(2, 1, 'cat', 'siam', 3, 1, "This cat is beautiful", 234, "2016-12-09 14:10:10"),
-(3, 3, 'snake', 'diamantis', 3, 1, "ssssssssss!", 123, "2016-12-07 08:31:13"),
-(4, 5, 'cow', 'siam', 3, 1, "mmmmmmmm", 234, "2016-12-08 17:31:18");
+(1, 2, 'dog', 'kanis', 3, 1, "Please take me to your home, I cook!", 123, "2016-12-09 12:42:13", "2016-12-19 12:42:13"),
+(2, 1, 'cat', 'siam', 3, 1, "This cat is beautiful", 234, "2016-12-09 14:10:10", "2016-12-17 12:42:13"),
+(3, 3, 'snake', 'diamantis', 3, 1, "ssssssssss!", 123, "2016-12-07 08:31:13", "2016-12-17 12:42:13"),
+(4, 5, 'cow', 'siam', 3, 1, "mmmmmmmm", 234, "2016-12-08 17:31:18", "2016-12-18 12:42:13");
 
 UNLOCK TABLES;

@@ -12,7 +12,7 @@
 
 <div class="container col-xs-3">
     <h2>Add your Pet</h2>
-    <form method="post" action="../controller/AddPetController.php">
+    <form method="GET" action="../controller/AddPetController.php">
         <!--Pet type-->
         <div class="form-group">
             <label for="pet_type" class="col-form-label">Pet type:</label>
