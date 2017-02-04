@@ -8,7 +8,7 @@
     <title>Get a Pet</title>
 </head>
 <body>
-<p>Mastora we have send you an email! Kane ena kopo and click on the link inside the mail!</p>
+<p>We have send you an email, click on the link to activate your account!</p>
 <label class="col-form-label" ><a href="../view/login.php"> Go to Login:</a></label>
 </body>
 </html>

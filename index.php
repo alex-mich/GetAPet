@@ -50,7 +50,10 @@ include 'database/DatabaseConnection.php';
                 <a class="nav-link" href="view/MyAdverts.php">My Advertisements</a>
             </li>
             <li class="nav-item float-xs-right">
-                <a class="nav-link" href="controller/logoutController.php"><?= $userLogin->getUsername() ?></a>
+                <a class="nav-link" href="controller/logoutController.php">Logout</a>
+            </li>
+            <li class="nav-item float-xs-right">
+                <a class="nav-link" href="view/userProfile.php"><?= $userLogin->getUsername() ?></a>
             </li>
             <?php
         } else {
@@ -119,45 +122,7 @@ include 'database/DatabaseConnection.php';
                 </div>
             </div>
         <?php } ?>
-        <!--        <div class="card">-->
-        <!--            <img class="card-img-top img-thumbnail" src="images/dog2.jpg" alt="Card image cap">-->
-        <!--            <div class="card-block">-->
-        <!--                <h4 class="card-title">Takis</h4>-->
-        <!--                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>-->
-        <!--                <a href="#" class="btn btn-primary">Open</a>-->
-        <!--            </div>-->
-        <!--            <div class="card-footer text-muted">-->
-        <!--                <p class="card-text float-xs-right">-->
-        <!--                    <small>Last updated 1 mins ago</small>-->
-        <!--                </p>-->
-        <!--            </div>-->
-        <!--        </div>-->
-        <!--        <div class="card">-->
-        <!--            <img class="card-img-top img-thumbnail" src="images/dog3.jpg" alt="Card image cap">-->
-        <!--            <div class="card-block">-->
-        <!--                <h4 class="card-title">Soula</h4>-->
-        <!--                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>-->
-        <!--                <a href="#" class="btn btn-primary">Open</a>-->
-        <!--            </div>-->
-        <!--            <div class="card-footer text-muted">-->
-        <!--                <p class="card-text float-xs-right">-->
-        <!--                    <small>Last updated 1 mins ago</small>-->
-        <!--                </p>-->
-        <!--            </div>-->
-        <!--        </div>-->
-        <!--        <div class="card">-->
-        <!--            <img class="card-img-top img-thumbnail" src="images/dog3.jpg" alt="Card image cap">-->
-        <!--            <div class="card-block">-->
-        <!--                <h4 class="card-title">Soula</h4>-->
-        <!--                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>-->
-        <!--                <a href="#" class="btn btn-primary">Open</a>-->
-        <!--            </div>-->
-        <!--            <div class="card-footer text-muted">-->
-        <!--                <p class="card-text float-xs-right">-->
-        <!--                    <small>Last updated 1 mins ago</small>-->
-        <!--                </p>-->
-        <!--            </div>-->
-        <!--        </div>-->
+
     </div>
 </div>
 

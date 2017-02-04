@@ -29,7 +29,7 @@ function activate($email, $emailCode){
     if ($result->num_rows > 0) {
         $query = "UPDATE users SET active = 1 where email ='$email'";
         $result = $conn->query($query);
-        if ($result->num_rows > 0 )
+//        if ($result->num_rows > 0 )
             return true;
     } else {
         false;
@@ -40,4 +40,20 @@ function activate($email, $emailCode){
 
 }
 
-?>
+function getPets($userId){
+    $query = "SELECT * FROM pets WHERE user_id='$userId'";
+    $conn = DatabaseConnection::getInstance();
+    $result = $conn->query($query);
+    if ($result->num_rows > 0) {
+        return $result;
+    } else {
+        false;
+    }
+    $conn->close();
+
+    return false;
+//    $result = mysqli_query($con, $sqlpet);
+}
+
+
+

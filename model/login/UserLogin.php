@@ -6,6 +6,8 @@
  * Date: 17/12/2016
  * Time: 12:36 μμ
  */
+
+
 class UserLogin
 {
 
@@ -15,7 +17,7 @@ class UserLogin
         /** Initiate Connection */
         $host = "localhost";
         $uname = "root";
-        $psswd = null;
+        $psswd = root;
         $dbname = "getapet";
 
         $conn = new mysqli($host, $uname, $psswd, $dbname);

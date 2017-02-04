@@ -18,7 +18,7 @@ class UserRegister
         /** Initiate Connection */
         $host = "localhost";
         $uname = "root";
-        $psswd = null;
+        $psswd = root;
         $dbname = "getapet";
 
         $conn = new mysqli($host, $uname, $psswd, $dbname);

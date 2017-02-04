@@ -212,4 +212,34 @@ class User
         $this->isActive = $isActive;
     }
 
+    public function getAccountTypeString()
+    {
+        switch ($this->accountType){
+            case 0:
+                return "Petter";
+            case 1:
+                return "Getter";
+            case 2:
+                return "Both";
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param mixed $address
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+    }
+
+
+
 }
