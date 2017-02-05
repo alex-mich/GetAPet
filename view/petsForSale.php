@@ -12,6 +12,7 @@
 <?php
 session_start();
 include '../model/login/User.php';
+include '../model/PetDetails.php';
 include '../database/DatabaseConnection.php';
 ?>
 
@@ -63,7 +64,7 @@ include '../database/DatabaseConnection.php';
 <?php
 
 $conn = DatabaseConnection::getInstance();
-$query = "select * from pets  where advert_type=0 order by time DESC ";
+$query = "select * from pets  where advert_type = 0 order by time DESC ";
 
 $statement = $conn->stmt_init();
 if (!$statement->prepare($query)) {
@@ -73,28 +74,45 @@ if (!$statement->prepare($query)) {
     $statement->execute();
     $result = $statement->get_result();
     while ($row = $result->fetch_assoc()) {
+        $petDetails = new PetDetails($row['pet_id'], $row['user_id'], $row['pet_type'], $row["pet_breed"], $row["pet_age"],
+            $row["advert_type"], $row["advert_details"], $row["pet_photo"], $row["pet_photo"], $row["time"], $row["due_time"])
         ?>
         <div class="card-deck-wrapper">
             <div class="card-deck">
                 <div class="card">
                     <img class="card-img-top img-thumbnail" src="../images/dog1.jpg" alt="Card image cap">
                     <div class="card-block">
-                        <h4 class="card-title"><?= $row['pet_type'] ?></h4>
-                        <p class="card-text">Breed: <?= $row["pet_breed"] ?></p>
-                        <p class="card-text">Age: <?= $row["pet_age"] ?></p>
-                        <p class="card-text"> <?= $row["advert_details"] ?></p>
-                        <p class="card-text"> Due Time: <?= $row["due_time"] ?></p>
+                        <h4 class="card-title"><?= $petDetails->getPetType() ?></h4>
+                        <p class="card-text">Breed: <?= $petDetails->getPetBreed() ?></p>
+                        <p class="card-text">Age: <?= $petDetails->getAge() ?></p>
+                        <p class="card-text"> <?= $petDetails->getAdvertDetails() ?></p>
+                        <p class="card-text"> Due Time: <?= $petDetails->getDueTime() ?></p>
                     </div>
 
                     <div class="card-footer text-muted">
                         <p class="card-text float-xs-right">
-                            <small> Last updated <?= $row["time"] ?> </small>
+                            <small> Date Added: <?= $petDetails->getTime() ?> </small>
                         </p>
                         <form method="GET" action="petFullView.php">
                             <button type="submit" class="btn btn-primary" name="details_adv"
-                                    value="<?= $row['pet_id'] ?>">See Details
+                                    value="<?= $petDetails->getId() ?>">See Details
                             </button>
                         </form>
+                        <?php
+                        if (isset($_SESSION["login"])) {
+                            $user = $_SESSION["login"];
+                            $userLogin = unserialize($user);
+                            if ($userLogin->getUserId() != $petDetails->getUserId()) {
+                                ?>
+                                <form method="GET" action="sendMessage.php">
+                                    <button type="submit" class="btn btn-primary" name="message_user"
+                                            value="<?= $petDetails->getUserId() ?>">Send Message
+                                    </button>
+                                </form>
+                                <?php
+                            }
+                        }
+                        ?>
                     </div>
                 </div>
             </div>

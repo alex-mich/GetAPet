@@ -35,6 +35,9 @@ include 'database/DatabaseConnection.php';
         <li class="nav-item">
             <a class="nav-link" href="view/petsForAdoption.php">Looking For Pets</a>
         </li>
+        <!--        <li class="nav-item">-->
+        <!--            <a class="nav-link" href="">Pets Wanted</a>-->
+        <!--        </li>-->
         <?php
         if (isset($_SESSION["login"])) {
             $user = $_SESSION["login"];
@@ -48,6 +51,9 @@ include 'database/DatabaseConnection.php';
             </li>
             <li class="nav-item float-xs-right">
                 <a class="nav-link" href="controller/logoutController.php">Logout</a>
+            </li>
+            <li class="nav-item float-xs-right">
+                <a class="nav-link" href="view/messages.php">Messages</a>
             </li>
             <li class="nav-item float-xs-right">
                 <a class="nav-link" href="view/userProfile.php"><?= $userLogin->getUsername() ?></a>

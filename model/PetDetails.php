@@ -10,31 +10,123 @@ class PetDetails
 {
 
     private $id;
+    private $userId;
+    private $petType;
     private $petBreed;
     private $age;
-    private $isForSale;
+    private $advertType;
     private $advertDetails;
     private $petPicture;
+    private $time;
+    private $dueTime;
 
     /**
      * PetDetails constructor.
      * @param $id
+     * @param $userId
+     * @param $petType
      * @param $petBreed
      * @param $age
-     * @param $isForSale
+     * @param $advertType
      * @param $advertDetails
      * @param $petPicture
+     * @param $time
+     * @param $dueTime
      */
-    public function __construct($id, $petBreed, $age, $isForSale, $advertDetails, $petPicture)
+    public function __construct($id, $userId, $petType, $petBreed, $age, $advertType, $advertDetails, $petPicture, $time, $dueTime)
     {
         $this->id = $id;
+        $this->userId = $userId;
+        $this->petType = $petType;
         $this->petBreed = $petBreed;
         $this->age = $age;
-        $this->isForSale = $isForSale;
+        $this->advertType = $advertType;
         $this->advertDetails = $advertDetails;
         $this->petPicture = $petPicture;
+        $this->time = $time;
+        $this->dueTime = $dueTime;
     }
 
+
+    /**
+     * @return mixed
+     */
+    public function getUserId()
+    {
+        return $this->userId;
+    }
+
+    /**
+     * @param mixed $userId
+     */
+    public function setUserId($userId)
+    {
+        $this->userId = $userId;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPetType()
+    {
+        return $this->petType;
+    }
+
+    /**
+     * @param mixed $petType
+     */
+    public function setPetType($petType)
+    {
+        $this->petType = $petType;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAdvertType()
+    {
+        return $this->advertType;
+    }
+
+    /**
+     * @param mixed $advertType
+     */
+    public function setAdvertType($advertType)
+    {
+        $this->advertType = $advertType;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTime()
+    {
+        return $this->time;
+    }
+
+    /**
+     * @param mixed $time
+     */
+    public function setTime($time)
+    {
+        $this->time = $time;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDueTime()
+    {
+        return $this->dueTime;
+    }
+
+    /**
+     * @param mixed $dueTime
+     */
+    public function setDueTime($dueTime)
+    {
+        $this->dueTime = $dueTime;
+    }
 
     /**
      * @return mixed
@@ -82,22 +174,6 @@ class PetDetails
     public function setAge($age)
     {
         $this->age = $age;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getIsForSale()
-    {
-        return $this->isForSale;
-    }
-
-    /**
-     * @param mixed $isForSale
-     */
-    public function setIsForSale($isForSale)
-    {
-        $this->isForSale = $isForSale;
     }
 
     /**
