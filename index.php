@@ -35,9 +35,6 @@ include 'database/DatabaseConnection.php';
         <li class="nav-item">
             <a class="nav-link" href="view/petsForAdoption.php">Looking For Pets</a>
         </li>
-<!--        <li class="nav-item">-->
-<!--            <a class="nav-link" href="">Pets Wanted</a>-->
-<!--        </li>-->
         <?php
         if (isset($_SESSION["login"])) {
             $user = $_SESSION["login"];

@@ -6,6 +6,11 @@
 -- Αυτομάτως δημιουργούνται οι πίνακες με κάποιες demo εγγραφες.
 
 
+DROP DATABASE IF EXISTS getapet;
+
+CREATE DATABASE getapet;
+
+USE getapet;
 
 -- Table structure for table users
 DROP TABLE IF EXISTS PETS;
@@ -29,10 +34,10 @@ PRIMARY KEY (user_id)
 
 LOCK TABLES users WRITE;
 INSERT INTO users VALUES
-(1, 'Nikos', 'Papas', 'npapas','12345', 'npapas@gmail.com', 2, 'Venizelou 3', '1234567899', 1234, 0, ''),
-(2, 'Kostas', 'Dedes', 'kdedes','23456', 'kdedes@gmail.com', 1, 'Venizelou 2', '1134467899', 1234, 0, ''),
-(3, 'Maria', 'Poulou', 'mpoulou','34567', 'mpoulou@gmail.com', 0, 'Venizelou 1', '1324354657', 1234, 0, ''),
-(4, 'Sakis', 'Kouvas', 'skouvas','45678', 'skouvas@gmail.com', 1, 'Venizelou 4', '4657687913', 1234, 0, ''),
+(1, 'Nikos', 'Papas', 'npapas','12345', 'npapas@gmail.com', 2, 'Venizelou 3', '1234567899', 1234, 1, ''),
+(2, 'Kostas', 'Dedes', 'kdedes','23456', 'kdedes@gmail.com', 1, 'Venizelou 2', '1134467899', 1234, 1, ''),
+(3, 'Maria', 'Poulou', 'mpoulou','34567', 'mpoulou@gmail.com', 0, 'Venizelou 1', '1324354657', 1234, 1, ''),
+(4, 'Sakis', 'Kouvas', 'skouvas','45678', 'skouvas@gmail.com', 1, 'Venizelou 4', '4657687913', 1234, 1, ''),
 (5, 'Fey', 'Kremyda', 'fkremyda','56789', 'fkremyda@gmail.com', 2, 'Venizelou 5', '2413354657', 1234, 0, '');
 
 UNLOCK TABLES;
