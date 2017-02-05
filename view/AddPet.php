@@ -43,7 +43,7 @@
         <div class="form-group">
             <label for="pet_type" class="col-form-label">Pet type:</label>
             <div class="input-group">
-                <input id="petType" type="text" class="form-control" name="pet_type" id="pet_type"
+                <input id="petType" type="text" class="form-control" name="pet_type"
                        placeholder="Enter type of pet">
                 <div id="suggesstion-box"></div>
                 <span class="input-group-addon glyphicon glyphicon-user"/>

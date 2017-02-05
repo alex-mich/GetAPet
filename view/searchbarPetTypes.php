@@ -12,7 +12,7 @@ $connection = DatabaseConnection::getInstance();
 
 $petType = $_GET['q'];
 
-$result = $connection->query("SELECT DISTINCT pet_type FROM pets WHERE pet_type LIKE '%$petType%'");
+$result = $connection->query("SELECT pet_type FROM pets WHERE pet_type LIKE '%$petType%'");
 
 $data = array();
 

@@ -10,6 +10,28 @@
     <!-- Bootstrap CSS-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css"
           integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+    <link href="lib/jquery-ui.css" rel="stylesheet">
+    <script type="text/javascript" src="lib/jquery-3.1.1.min.js"></script>
+    <script src="lib/jquery-ui.js"></script>
+    <link href="lib/float_search.css" rel="stylesheet">
+    <script type="text/javascript">
+        $(function () {
+            $('#petType').autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "view/searchbarPetTypes.php",
+                        dataType: "json",
+                        data: {q: request.term},
+                        success: function (data) {
+                            response(data);
+                        }
+                    });
+                },
+                minLength: 1
+            });
+        });
+    </script>
+
 </head>
 
 <body>
@@ -49,6 +71,7 @@ include 'database/DatabaseConnection.php';
             <li class="nav-item">
                 <a class="nav-link" href="view/MyAdverts.php">My Advertisements</a>
             </li>
+
             <li class="nav-item float-xs-right">
                 <a class="nav-link" href="controller/logoutController.php">Logout</a>
             </li>
@@ -70,6 +93,18 @@ include 'database/DatabaseConnection.php';
         <?php } ?>
     </ul>
 </nav>
+
+<form id="searchForm" method="get" action="view/searchPets.php">
+        <div class="input-group col-md-12">
+            <input name="petType" id="petType" type="text" class="  search-query form-control"
+                   placeholder="Search"/>
+            <span class="input-group-btn">
+                                    <button class="btn btn-primary" type="submit">
+                                        <span class=" glyphicon glyphicon-search"></span>
+                                    </button>
+            </span>
+        </div>
+</form>
 
 <!-- Carousel -->
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -134,13 +169,13 @@ include 'database/DatabaseConnection.php';
 </div>
 
 
-<!-- jQuery first, then Tether, then Bootstrap JS. -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"
-        integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js"
-        integrity="sha384-XTs3FgkjiBgo8qjEjBk0tGmf3wPrWtA6coPfQDfFEY8AnYJwjalXCiosYRBIBZX8"
-        crossorigin="anonymous"></script>
+<!--<!-- jQuery first, then Tether, then Bootstrap JS. -->-->
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"-->
+<!--        integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7"-->
+<!--        crossorigin="anonymous"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js"-->
+<!--        integrity="sha384-XTs3FgkjiBgo8qjEjBk0tGmf3wPrWtA6coPfQDfFEY8AnYJwjalXCiosYRBIBZX8"-->
+<!--        crossorigin="anonymous"></script>-->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js"
         integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK"
         crossorigin="anonymous"></script>
