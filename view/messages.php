@@ -9,10 +9,9 @@
           integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
 </head>
 <body>
-<?php include 'header.php';
-include '../model/Message.php';
-?>
 <?php
+include 'header.php';
+include '../model/Message.php';
 
 if (isset($_SESSION["login"])) {
     $user = $_SESSION["login"];
@@ -43,6 +42,19 @@ if (isset($_SESSION["login"])) {
                             <p class="card-text float-xs-left">
                                 <small>Message sent at: <?= $message->getMessageDate() ?> </small>
                             </p>
+                            <?php
+                            if (isset($_SESSION["login"])) {
+                                $user = $_SESSION["login"];
+                                $userLogin = unserialize($user);
+                                    ?>
+                                    <form method="GET" action="sendMessage.php">
+                                        <button type="submit" class="btn btn-primary" name="message_user"
+                                                value="<?= $message->getSenderId() ?>">Reply
+                                        </button>
+                                    </form>
+                                    <?php
+                                }
+                            ?>
                         </div>
                     </div>
                 </div>

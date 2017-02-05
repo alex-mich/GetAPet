@@ -9,25 +9,26 @@
           integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
 </head>
 <body>
-<div class="container col-xs-3">
-    <!-- User -->
-    <?php
-    include '../database/DatabaseConnection.php';
+<?php
+include 'header.php';
+include_once '../database/DatabaseConnection.php';
 
-    $receiverId = $_GET['message_user'];
+$receiverId = $_GET['message_user'];
 
-    $conn = DatabaseConnection::getInstance();
-    $query = "select username from users where user_id = ? limit 1";
+$conn = DatabaseConnection::getInstance();
+$query = "select username from users where user_id = ? limit 1";
 
-    $statement = $conn->stmt_init();
-    if (!$statement->prepare($query)) {
-        echo "Try again later";
-    } else {
-        $statement->bind_param("i", $receiverId);
-        $statement->execute();
-        $statement->bind_result($username);
-        $statement->fetch();
-        ?>
+$statement = $conn->stmt_init();
+if (!$statement->prepare($query)) {
+    echo "Try again later";
+} else {
+    $statement->bind_param("i", $receiverId);
+    $statement->execute();
+    $statement->bind_result($username);
+    $statement->fetch();
+    ?>
+
+    <div class="container col-xs-3">
         <h2>Send Message</h2>
         <form id="messageForm" action="../controller/messageController.php" method="post">
             <div class="form-group">
@@ -51,10 +52,10 @@
             <!-- Sign-Up Button -->
             <button type="submit" class="btn btn-primary">Send</button>
         </form>
-        <?php
-    }
-    ?>
-</div>
+    </div>
+    <?php
+}
+?>
 
 <script type="text/javascript" src="../lib/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="../lib/bootstrap.min.js"></script>

@@ -39,7 +39,6 @@
     </form>
 
     <?php
-    session_start();
     if (isset($_SESSION["inactive"])) {
         echo 'Please activate your account!';
     }else if (isset($_SESSION["wrong_credentials"])){
