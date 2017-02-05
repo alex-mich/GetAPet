@@ -9,11 +9,10 @@
           integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
 </head>
 <body>
-<?php
-session_start();
-include '../model/login/User.php';
+<?php include 'header.php';
 include '../model/Message.php';
-include '../database/DatabaseConnection.php';
+?>
+<?php
 
 if (isset($_SESSION["login"])) {
     $user = $_SESSION["login"];

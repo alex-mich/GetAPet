@@ -12,7 +12,6 @@
 <?php include 'header.php'?>
 
 <?php
-//include '../database/DatabaseConnection.php';
 
 $conn = DatabaseConnection::getInstance();
 $query = "select * from pets  where advert_type=1 order by time DESC ";

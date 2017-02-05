@@ -42,6 +42,9 @@ include '../database/DatabaseConnection.php';
                 <a class="nav-link" href="../controller/logoutController.php">Logout</a>
             </li>
             <li class="nav-item float-xs-right">
+                <a class="nav-link" href="messages.php">Messages</a>
+            </li>
+            <li class="nav-item float-xs-right">
                 <a class="nav-link" href="userProfile.php"><?= $userLogin->getUsername() ?></a>
             </li>
             <?php
