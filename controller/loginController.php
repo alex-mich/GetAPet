@@ -23,10 +23,23 @@ if (isset($_SESSION["login"])) {
 }
 
 $currentLogin = $user;
-$previousLogin = serialize($currentLogin);
-$_SESSION["login"] = $previousLogin;
+if ($user->getIsActive() == 0) {
+    $_SESSION["inactive"] = 'inactive';
+    $url = "Location: ../view/login.php";
+    header($url);
+} else if ($user->getPassword() != $password) {
+    unset($_SESSION["inactive"]);
+    $_SESSION["wrong_credentials"] = 'wrong';
+    $url = "Location: ../view/login.php";
+    header($url);
+}   else {
+    unset($_SESSION["inactive"]);
+    unset($_SESSION["wrong_credentials"]);
+    $previousLogin = serialize($currentLogin);
+    $_SESSION["login"] = $previousLogin;
 
-$url = "Location: ../view/userProfile.php";
-header($url);
+    $url = "Location: ../view/userProfile.php";
+    header($url);
+}
 
 

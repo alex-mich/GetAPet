@@ -36,6 +36,17 @@
         <!-- Sign-In Button -->
         <button type="submit" class="btn btn-primary">Sign In</button>
     </form>
+
+    <?php
+    session_start();
+    if (isset($_SESSION["inactive"])) {
+        echo 'Please activate your account!';
+    }else if (isset($_SESSION["wrong_credentials"])){
+        echo 'Wrong Credentials!';
+    }
+    ?>
+
+
     <script type="text/javascript" src="../lib/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="../lib/bootstrap.min.js"></script>
     <script type="text/javascript" src="../lib/formValidation.min.js"></script>

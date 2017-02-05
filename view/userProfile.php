@@ -57,6 +57,8 @@ if (isset($_SESSION["login"])) {
                 <label for="address" class="col-form-label">Home Address: <?= $userLogin->getAddress() ?></label>
 
             </div>
+            <?php echo '<img src="data:image/jpeg;base64,' . base64_encode($userLogin->getUserPhoto()) . '" width="290" height="290">';
+            ?>
     </form>
 </div>
 

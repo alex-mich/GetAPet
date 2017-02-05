@@ -12,7 +12,7 @@
 
 <div class="container col-xs-3">
     <h2>Add your Pet</h2>
-    <form method="GET" action="../controller/AddPetController.php">
+    <form id="addPetForm" action="../controller/AddPetController.php" method="post" enctype="multipart/form-data">
         <!--Pet type-->
         <div class="form-group">
             <label for="pet_type" class="col-form-label">Pet type:</label>
@@ -48,8 +48,8 @@
                     Sale
                 </label>
                 <label class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="advert_type" id="optionradios2" value="1">For
-                    Adoption
+                    <input class="form-check-input" type="radio" name="advert_type" id="optionradios2" value="1">Looking
+                    For
                 </label>
             </fieldset>
         </div>
@@ -60,13 +60,67 @@
         </div>
         <!-- Add Pet Picture -->
         <div class="form-group">
-            <label for="imageInput">Pet Picture</label>
-            <input type="file" class="form-control-file" id="imageInput">
+            <label for="image">Pet Picture</label>
+            <input type="file" class="form-control-file" name="image" id="image">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
 
+<script type="text/javascript" src="../lib/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="../lib/bootstrap.min.js"></script>
+<script type="text/javascript" src="../lib/formValidation.min.js"></script>
+<script type="text/javascript" src="../lib/validation.bootstrap.min.js"></script>
+
+<script>$(document).ready(function () {
+        $('#addPetForm').formValidation({
+            framework: 'bootstrap',
+            icon: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                pet_type: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please enter a pet type'
+                        }
+                    }
+                },
+                pet_breed: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please enter a pet breed'
+                        }
+                    }
+                },
+                pet_age: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please enter the pet\'s age'
+                        }
+                    }
+                },
+                advert_type: {
+                    validators: {
+                        choice: {
+                            min: 1,
+                            max: 1,
+                            message: 'Please choose 1 account type'
+                        }
+                    }
+                },
+                advert_details: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please enter what you seek for or what you want as reward'
+                        }
+                    }
+                }
+            }
+        });
+    });</script>
 </body>
 
 

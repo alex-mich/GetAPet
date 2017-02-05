@@ -33,7 +33,7 @@ include 'database/DatabaseConnection.php';
             <a class="nav-link" href="view/petsForSale.php">Pets for Sale</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="view/petsForAdoption.php">Pets for Adoption</a>
+            <a class="nav-link" href="view/petsForAdoption.php">Looking For Pets</a>
         </li>
 <!--        <li class="nav-item">-->
 <!--            <a class="nav-link" href="">Pets Wanted</a>-->
