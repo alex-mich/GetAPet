@@ -220,7 +220,7 @@ class User
             case 1:
                 return "Getter";
             case 2:
-                return "Both";
+                return "Both Petter and Getter";
         }
     }
 

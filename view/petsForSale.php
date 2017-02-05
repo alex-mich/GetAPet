@@ -30,7 +30,7 @@ if (!$statement->prepare($query)) {
         <div class="card-deck-wrapper">
             <div class="card-deck">
                 <div class="card">
-                    <img class="card-img-top img-thumbnail" src="../images/dog1.jpg" alt="Card image cap">
+                    <?php echo '<img src="data:image/jpeg;base64,' . base64_encode($petDetails->getPetPicture()) . '" width="290" height="290">';?>
                     <div class="card-block">
                         <h4 class="card-title"><?= $petDetails->getPetType() ?></h4>
                         <p class="card-text">Breed: <?= $petDetails->getPetBreed() ?></p>
@@ -43,9 +43,9 @@ if (!$statement->prepare($query)) {
                         <p class="card-text float-xs-right">
                             <small> Date Added: <?= $petDetails->getTime() ?> </small>
                         </p>
-                        <form method="GET" action="petFullView.php">
-                            <button type="submit" class="btn btn-primary" name="details_adv"
-                                    value="<?= $petDetails->getId() ?>">See Details
+                        <form method="GET" action="customerProfile.php">
+                            <button type="submit" class="btn btn-primary" name="userId"
+                                    value="<?= $petDetails->getUserId() ?>">Customer Profile
                             </button>
                         </form>
                         <?php

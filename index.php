@@ -39,8 +39,8 @@
 session_start();
 include 'model/login/User.php';
 include 'database/DatabaseConnection.php';
-?>
 
+$db = DatabaseConnection::getInstance(); ?>
 <!-- Navigation Bar -->
 <nav class="navbar navbar-light bg-faded">
     <!-- Logo -->
@@ -95,15 +95,13 @@ include 'database/DatabaseConnection.php';
 </nav>
 
 <form id="searchForm" method="get" action="view/searchPets.php">
-        <div class="input-group col-md-12">
-            <input name="petType" id="petType" type="text" class="  search-query form-control"
-                   placeholder="Search"/>
-            <span class="input-group-btn">
-                                    <button class="btn btn-primary" type="submit">
-                                        <span class=" glyphicon glyphicon-search"></span>
-                                    </button>
-            </span>
-        </div>
+    <div class="input-group col-md-12">
+        <input name="petType" id="petType" type="text" class="  search-query form-control"
+               placeholder="Search"/>
+        <span class="input-group-btn">
+        <button type="submit" class="btn btn-primary">Search</button>
+        </span>
+    </div>
 </form>
 
 <!-- Carousel -->
@@ -134,35 +132,69 @@ include 'database/DatabaseConnection.php';
     </a>
 </div>
 
-<h3 class="text-muted">Most recent uploads</h3>
 
 <!-- Card deck -->
+<h3 class="text-muted">Most recent uploads</h3>
 <div class="card-deck-wrapper">
     <div class="card-deck">
         <?php
-        $db = DatabaseConnection::getInstance();
-        $cardsQuery = "select * from pets order by time DESC limit 4";
+        if (isset($_SESSION["login"])) {
+            $cardsQuery = "select * from pets order by time DESC limit 5";
+            $rows = $db->query($cardsQuery);
+
+            foreach ($rows as $row) {
+                ?>
+                <div class="card">
+                    <?php echo '<img src="data:image/jpeg;base64,' . base64_encode($userLogin->getUserPhoto()) . '" width="290" height="290">'; ?>
+                    <div class="card-block">
+                        <h4 class="card-title"><?= $row['pet_type'] ?></h4>
+                        <p class="card-text"><?= $row['advert_details'] ?></p>
+                        <form method="GET" action="view/customerProfile.php">
+                            <button type="submit" class="btn btn-primary" name="userId"
+                                    value="<?= $row['user_id'] ?>">Customer Profile
+                            </button>
+                        </form>
+                    </div>
+                    <div class="card-footer text-muted">
+                        <p class="card-text float-xs-right">
+                            <small> Last updated <?= $row['time'] ?> </small>
+                        </p>
+                    </div>
+                </div>
+            <?php }
+        } ?>
+
+    </div>
+</div>
+
+<h3 class="text-muted">Adverts you may be interested in!</h3>
+<div class="card-deck-wrapper">
+    <div class="card-deck">
+        <?php
+        $cardsQuery = "select * from pets order by time DESC limit 5";
         $rows = $db->query($cardsQuery);
 
         foreach ($rows as $row) {
+        ?>
+        <div class="card">
+            <?php
+            echo '<img src="data:image/jpeg;base64,' . base64_encode($row["pet_photo"]) . '" width="290" height="290">';
             ?>
-            <div class="card">
-                <img class="card-img-top img-thumbnail" src="images/dog1.jpg" alt="Card image cap">
-                <div class="card-block">
-                    <h4 class="card-title"><?= $row['pet_type'] ?></h4>
-                    <p class="card-text"><?= $row['advert_details'] ?></p>
-                    <form method="GET" action="view/petFullView.php">
-                        <button type="submit" class="btn btn-primary" name="details_adv"
-                                value="<?= $row['pet_id'] ?>">See Details
-                        </button>
-                    </form>
-                </div>
-                <div class="card-footer text-muted">
-                    <p class="card-text float-xs-right">
-                        <small> Last updated <?= $row['time'] ?> </small>
-                    </p>
-                </div>
+            <div class="card-block">
+                <h4 class="card-title"><?= $row['pet_type'] ?></h4>
+                <p class="card-text"><?= $row['advert_details'] ?></p>
+                <form method="GET" action="view/customerProfile.php">
+                    <button type="submit" class="btn btn-primary" name="userId"
+                            value="<?= $row['user_id'] ?>">Customer Profile
+                    </button>
+                </form>
             </div>
+            <div class="card-footer text-muted">
+                <p class="card-text float-xs-right">
+                    <small> Last updated <?= $row['time'] ?> </small>
+                </p>
+            </div>
+        </div>
         <?php } ?>
 
     </div>

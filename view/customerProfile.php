@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>User Profile</title>
+    <title>Customer Profile</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -11,23 +11,52 @@
 <body>
 <?php
 include 'header.php';
-if (isset($_SESSION["login"])) {
-    $user = $_SESSION["login"];
-    $userLogin = unserialize($user);
+
+$user_id = $_GET['userId'];
+
+$conn = DatabaseConnection::getInstance();
+/** Prepare Select Query*/
+$query = "select * from users where user_id = (?)";
+
+$statement = $conn->stmt_init();
+
+if (!$statement->prepare($query)) {
+    print "Failed to prepare statement";
+} else {
+    $statement->bind_param("i", $user_id);
+    $statement->execute();
+    $resultSet = $statement->get_result();
+
+    /** Handle the result from result set */
+    $r = $resultSet->fetch_row();
+    $userId = $r[0];
+    $firstName = $r[1];
+    $lastName = $r[2];
+    $username = $r[3];
+    $password = $r[4];
+    $email = $r[5];
+    $accountType = $r[6];
+    $address = $r[7];
+    $telephone = $r[8];
+    $userPhoto = $r[9];
+    $isActive = $r[10];
+    $emailCode = $r[11];
+    $user = new User($userId, $firstName, $lastName, $username, $password, $email, $accountType, $address, $telephone, $userPhoto, $isActive, $emailCode);
 }
+
 ?>
 <div class="container col-xs-3">
 
     <h2>Customer Profile</h2>
     <!-- Username -->
     <div class="form-group">
-        <?php echo '<img src="data:image/jpeg;base64,' . base64_encode($userLogin->getUserPhoto()) . '" width="290" height="290">'; ?>
+        <?php echo '<img src="data:image/jpeg;base64,' . base64_encode($user->getUserPhoto()) . '" width="290" height="290">'; ?>
         <br>
         <div class="form-group">
             <label for="username" class="col-form-label">Username:</label>
             <div class="input-group">
                 <input type="text" class="form-control" name="username" id="username" disabled
-                       value=" <?= $userLogin->getUsername() ?>"/>
+                       value=" <?= $user->getUsername() ?>"/>
             </div>
         </div>
         <!-- Email -->
@@ -35,7 +64,7 @@ if (isset($_SESSION["login"])) {
             <label for="email" class="col-form-label">Email:</label>
             <div class="input-group">
                 <input type="text" class="form-control" name="username" id="username" disabled
-                       value=" <?= $userLogin->getEmail() ?>"/>
+                       value=" <?= $user->getEmail() ?>"/>
             </div>
         </div>
         <!-- Account Type -->
@@ -43,7 +72,7 @@ if (isset($_SESSION["login"])) {
             <label class="col-form-label">Account Type:</label>
             <div class="input-group">
                 <input type="text" class="form-control" name="username" id="username" disabled
-                       value="<?= $userLogin->getAccountTypeString() ?>"/>
+                       value="<?= $user->getAccountTypeString() ?>"/>
             </div>
         </div>
         <!-- First Name -->
@@ -51,7 +80,7 @@ if (isset($_SESSION["login"])) {
             <label for="firstName" class="col-form-label">First Name:</label>
             <div class="input-group">
                 <input type="text" class="form-control" name="username" id="username" disabled
-                       value="<?= $userLogin->getFirstName() ?>"/>
+                       value="<?= $user->getFirstName() ?>"/>
             </div>
 
         </div>
@@ -60,7 +89,7 @@ if (isset($_SESSION["login"])) {
             <label for="lastName" class="col-form-label">Last Name:</label>
             <div class="input-group">
                 <input type="text" class="form-control" name="username" id="username" disabled
-                       value=" <?= $userLogin->getLastName() ?>"/>
+                       value=" <?= $user->getLastName() ?>"/>
             </div>
         </div>
         <!-- Telephone -->
@@ -68,7 +97,7 @@ if (isset($_SESSION["login"])) {
             <label for="telephone" class="col-form-label">Telephone:</label>
             <div class="input-group">
                 <input type="text" class="form-control" name="username" id="username" disabled
-                       value=" <?= $userLogin->getTelephone() ?>"/>
+                       value=" <?= $user->getTelephone() ?>"/>
             </div>
         </div>
         <!-- Home Address -->
@@ -76,9 +105,10 @@ if (isset($_SESSION["login"])) {
             <label for="address" class="col-form-label">Home Address:</label>
             <div class="input-group">
                 <input type="text" class="form-control" name="username" id="username" disabled
-                       value=" <?= $userLogin->getAddress() ?>"/>
+                       value=" <?= $user->getAddress() ?>"/>
             </div>
         </div>
     </div>
+
 </body>
 </html>
