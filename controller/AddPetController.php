@@ -12,6 +12,7 @@ include '../model/login/User.php';
 if (isset($_SESSION["login"])) {
     $currentLogin = $_SESSION["login"];
     $loggedUser = unserialize($currentLogin);
+    $userId = $loggedUser->getUserId();
 
     $petType = $_POST["pet_type"];
     $petBreed = $_POST["pet_breed"];
@@ -39,11 +40,11 @@ if (isset($_SESSION["login"])) {
     } else {
         $pet_id = null;
         $advert_date = date('Y-m-d H:i:s');
-        $userId = $loggedUser->getUserId();
         /** Bind Params into the Prepared Statement */
-        $statement->bind_param("iisssisbss", $pet_id, $user_id, $petType, $petBreed, $petAge, $advertType, $advertDetails, $file, $advert_date, $advert_date);
+        $statement->bind_param("iisssisbss", $pet_id, $userId, $petType, $petBreed, $petAge, $advertType, $advertDetails, $file, $advert_date, $advert_date);
         $statement->send_long_data(7, $file);
         $success = $statement->execute();
+        echo $statement->error;
 
         echo $success;
     }
@@ -51,7 +52,7 @@ if (isset($_SESSION["login"])) {
     $statement->close();
     $conn->close();
 
-//    $url = "Location: ../index.php";
-//    header($url);
+    $url = "Location: ../index.php";
+    header($url);
 }
 

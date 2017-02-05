@@ -13,7 +13,6 @@
 include 'header.php';
 include_once '../model/login/User.php';
 include '../model/PetDetails.php';
-include_once '../database/DatabaseConnection.php';
 
 $conn = DatabaseConnection::getInstance();
 $query = "select * from pets  where advert_type = 0 order by time DESC ";

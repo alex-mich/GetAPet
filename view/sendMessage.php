@@ -11,7 +11,6 @@
 <body>
 <?php
 include 'header.php';
-include_once '../database/DatabaseConnection.php';
 
 $receiverId = $_GET['message_user'];
 

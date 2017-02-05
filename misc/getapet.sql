@@ -54,8 +54,8 @@ CREATE TABLE pets (
   advert_type    INT(1),
   advert_details VARCHAR(200),
   pet_photo      LONGBLOB,
-  time           DATETIME,
-  due_time       DATETIME,
+  time           VARCHAR(20),
+  due_time       VARCHAR(20),
   PRIMARY KEY (pet_id),
   FOREIGN KEY (user_id) REFERENCES USERS (user_id)
 );

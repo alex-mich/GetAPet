@@ -15,9 +15,7 @@
           integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
 </head>
 <body>
-<?php include 'header.php'?>
-
-<?php
+<?php include 'header.php';
 
 if (isset($_SESSION["login"])) {
     $currentLogin = $_SESSION["login"];
