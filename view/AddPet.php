@@ -7,59 +7,35 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css"
           integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+    <link href="../lib/jquery-ui.css" rel="stylesheet">
+    <script type="text/javascript" src="../lib/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="../lib/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../lib/formValidation.min.js"></script>
+    <script type="text/javascript" src="../lib/validation.bootstrap.min.js"></script>
+    <script src="../lib/jquery-ui.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $('#petType').autocomplete({
+                source: function(request, response){
+                    $.ajax({
+                        url:"petTypes.php",
+                        dataType:"json",
+                        data:{q:request.term},
+                        success: function (data) {
+                            response(data);
+                        }
+                    });
+                },
+                minLength:1
+            });
+        });
+    </script>
+
+
 </head>
 <body>
-<?php
-session_start();
-include '../model/login/User.php';
-include '../database/DatabaseConnection.php';
-?>
-
-<!-- Navigation Bar -->
-<nav class="navbar navbar-light bg-faded">
-    <!-- Logo -->
-    <a href="../index.php" class="navbar-brand">Get a Pet</a>
-
-    <!-- Menu items -->
-    <ul class="nav navbar-nav">
-        <li class="nav-item">
-            <a class="nav-link" href="../index.php">Home</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="petsForSale.php">Pets for Sale</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="petsForAdoption.php">Looking For Pets</a>
-        </li>
-        <?php
-        if (isset($_SESSION["login"])) {
-            $user = $_SESSION["login"];
-            $userLogin = unserialize($user);
-            ?>
-            <li class="nav-item active">
-                <a class="nav-link" href="AddPet.php">Add Pet</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="MyAdverts.php">My Advertisements</a>
-            </li>
-            <li class="nav-item float-xs-right">
-                <a class="nav-link" href="../controller/logoutController.php">Logout</a>
-            </li>
-            <li class="nav-item float-xs-right">
-                <a class="nav-link" href="userProfile.php"><?= $userLogin->getUsername() ?></a>
-            </li>
-            <?php
-        } else {
-            ?>
-            <li class="nav-item float-xs-right">
-                <a class="nav-link" href="login.php">Login</a>
-            </li>
-            <li class="nav-item float-xs-right">
-                <a class="nav-link" href="register.php">Register</a>
-            </li>
-        <?php } ?>
-    </ul>
-</nav>
+<?php include 'header.php' ?>
 
 <div class="container col-xs-3">
     <h2>Add your Pet</h2>
@@ -68,7 +44,9 @@ include '../database/DatabaseConnection.php';
         <div class="form-group">
             <label for="pet_type" class="col-form-label">Pet type:</label>
             <div class="input-group">
-                <input type="text" class="form-control" name="pet_type" id="pet_type" placeholder="Enter type of pet">
+                <input id="petType" type="text" class="form-control" name="pet_type" id="pet_type"
+                       placeholder="Enter type of pet">
+                <div id="suggesstion-box"></div>
                 <span class="input-group-addon glyphicon glyphicon-user"/>
             </div>
         </div>
@@ -118,10 +96,7 @@ include '../database/DatabaseConnection.php';
     </form>
 </div>
 
-<script type="text/javascript" src="../lib/jquery-3.1.1.min.js"></script>
-<script type="text/javascript" src="../lib/bootstrap.min.js"></script>
-<script type="text/javascript" src="../lib/formValidation.min.js"></script>
-<script type="text/javascript" src="../lib/validation.bootstrap.min.js"></script>
+
 
 <script>$(document).ready(function () {
         $('#addPetForm').formValidation({
@@ -172,6 +147,7 @@ include '../database/DatabaseConnection.php';
             }
         });
     });</script>
+
 </body>
 
 
