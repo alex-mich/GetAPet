@@ -145,7 +145,7 @@ $db = DatabaseConnection::getInstance(); ?>
             foreach ($rows as $row) {
                 ?>
                 <div class="card">
-                    <?php echo '<img src="data:image/jpeg;base64,' . base64_encode($userLogin->getUserPhoto()) . '" width="290" height="290">'; ?>
+                    <?php echo '<img src="data:image/jpeg;base64,' . base64_encode( $row['pet_photo']) . '" width="290" height="290">'; ?>
                     <div class="card-block">
                         <h4 class="card-title"><?= $row['pet_type'] ?></h4>
                         <p class="card-text"><?= $row['advert_details'] ?></p>

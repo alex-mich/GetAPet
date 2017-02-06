@@ -13,6 +13,12 @@
 
 <div class="container col-xs-3">
     <h2>Register</h2>
+    <?php
+    if (isset($_SESSION['user_exists'])) {
+        echo 'Please select a different username!';
+    }else if (isset($_SESSION['email_exists'])){
+        echo 'Email already exists exists!';    }
+    ?>
     <form id="registerForm" action="../controller/registerController.php" method="post" enctype="multipart/form-data">
         <!-- Username -->
         <div class="form-group">

@@ -13,7 +13,7 @@ class DatabaseConnection
 
     private static $host = "localhost";
     private static $uname = "root";
-    private static $psswd = "root";
+    private static $psswd = null;
     private static $dbname = "getapet";
 
 

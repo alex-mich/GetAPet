@@ -11,16 +11,8 @@
 class UserLogin
 {
 
-    function loadUser($givenUser)
+    function loadUser($givenUser, $conn)
     {
-
-        /** Initiate Connection */
-        $host = "localhost";
-        $uname = "root";
-        $psswd = "root";
-        $dbname = "getapet";
-
-        $conn = new mysqli($host, $uname, $psswd, $dbname);
 
         if ($conn->connect_error) {
             die("$conn->connect_errno: $conn->connect_error");

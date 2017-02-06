@@ -8,6 +8,7 @@
 
 include "../model/login/User.php";
 include "../model/login/UserLogin.php";
+include "../database/DatabaseConnection.php";
 
 session_start();
 
@@ -15,7 +16,8 @@ $username = $_POST["username"];
 $password = $_POST["password"];
 
 $userLogin = new UserLogin();
-$user = $userLogin->loadUser($username);
+$conn = DatabaseConnection::getInstance();
+$user = $userLogin->loadUser($username, $conn);
 
 if (isset($_SESSION["login"])) {
     $previousLogin = $_SESSION["login"];
