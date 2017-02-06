@@ -20,6 +20,7 @@ class User
     private $userPhoto;
     private $isActive;
     private $emailCode;
+    private $desiredPet;
 
     /**
      * User constructor.
@@ -36,7 +37,7 @@ class User
      * @param $isActive    - whether the user has activated the account
      * @param $emailCode    - email code for verification
      */
-    public function __construct($userId, $firstName, $lastName, $username, $password, $email, $accountType,$address, $telephone, $userPhoto, $isActive, $emailCode)
+    public function __construct($userId, $firstName, $lastName, $username, $password, $email, $accountType,$address, $telephone, $userPhoto, $isActive, $emailCode, $desiredPet)
     {
         $this->userId = $userId;
         $this->firstName = $firstName;
@@ -50,6 +51,7 @@ class User
         $this->userPhoto = $userPhoto;
         $this->isActive = $isActive;
         $this->emailCode = $emailCode;
+        $this->desiredPet = $desiredPet;
     }
 
     /**
@@ -240,6 +242,12 @@ class User
         $this->address = $address;
     }
 
-
+    /**
+     * @return mixed
+     */
+    public function getDesiredPet()
+    {
+        return $this->desiredPet;
+    }
 
 }

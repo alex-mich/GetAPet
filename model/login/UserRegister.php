@@ -12,7 +12,7 @@ class UserRegister
     private static $isActive = 0;
     private static $userId = null;
 
-    function registerUser($username, $password, $user_email, $accountType, $firstName, $lastName, $telephone, $address, $emailCode, $file, $conn)
+    function registerUser($username, $password, $user_email, $accountType, $firstName, $lastName, $telephone, $address, $emailCode, $file, $desiredPet ,$conn)
     {
 
         if ($conn->connect_error) {
@@ -20,7 +20,7 @@ class UserRegister
         }
 
         /** Prepare Insert Query*/
-        $query = "INSERT INTO USERS VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+        $query = "INSERT INTO USERS VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         $statement = $conn->stmt_init();
         if (!$statement->prepare($query)) {
@@ -28,7 +28,7 @@ class UserRegister
         } else {
 
             /** Bind Params into the Prepared Statement */
-            $statement->bind_param("isssssissbis", self::$userId, $firstName, $lastName, $username, $password, $user_email, $accountType, $address, $telephone, $file, self::$isActive, $emailCode);
+            $statement->bind_param("isssssissbiss", self::$userId, $firstName, $lastName, $username, $password, $user_email, $accountType, $address, $telephone, $file, self::$isActive, $emailCode, $desiredPet);
             $statement->send_long_data(9, $file);
             $success = $statement->execute();
 

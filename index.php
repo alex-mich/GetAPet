@@ -134,40 +134,49 @@ $db = DatabaseConnection::getInstance(); ?>
 
 
 <!-- Card deck -->
-<h3 class="text-muted">Most recent uploads</h3>
+<?php
+if (isset($_SESSION["login"])) {
+?>
+<h3 class="text-muted">Posts based on your preferences!</h3>
 <div class="card-deck-wrapper">
     <div class="card-deck">
         <?php
-        if (isset($_SESSION["login"])) {
-            $cardsQuery = "select * from pets order by time DESC limit 5";
-            $rows = $db->query($cardsQuery);
+        $cardsQuery = "select * from pets where pet_type like '%" .$userLogin->getDesiredPet() ."%' limit 5";
+        //$cardsQuery = "select * from pets order by time DESC limit 5";
+        $result = $db->query($cardsQuery);
 
-            foreach ($rows as $row) {
-                ?>
-                <div class="card">
-                    <?php echo '<img src="data:image/jpeg;base64,' . base64_encode( $row['pet_photo']) . '" width="290" height="290">'; ?>
-                    <div class="card-block">
-                        <h4 class="card-title"><?= $row['pet_type'] ?></h4>
-                        <p class="card-text"><?= $row['advert_details'] ?></p>
-                        <form method="GET" action="view/customerProfile.php">
-                            <button type="submit" class="btn btn-primary" name="userId"
-                                    value="<?= $row['user_id'] ?>">Customer Profile
-                            </button>
-                        </form>
-                    </div>
-                    <div class="card-footer text-muted">
-                        <p class="card-text float-xs-right">
-                            <small> Last updated <?= $row['time'] ?> </small>
-                        </p>
-                    </div>
+        //$data = array();
+
+        /*while ($row = $result->fetch_assoc()) {
+            $data[] = $row;
+        }*/
+
+        foreach ($result as $row) {
+            ?>
+            <div class="card">
+                <?php echo '<img src="data:image/jpeg;base64,' . base64_encode($row['pet_photo']) . '" width="290" height="290">'; ?>
+                <div class="card-block">
+                    <h4 class="card-title"><?= $row['pet_type'] ?></h4>
+                    <p class="card-text"><?= $row['advert_details'] ?></p>
+                    <form method="GET" action="view/customerProfile.php">
+                        <button type="submit" class="btn btn-primary" name="userId"
+                                value="<?= $row['user_id'] ?>">Customer Profile
+                        </button>
+                    </form>
                 </div>
-            <?php }
-        } ?>
+                <div class="card-footer text-muted">
+                    <p class="card-text float-xs-right">
+                        <small> Last updated <?= $row['time'] ?> </small>
+                    </p>
+                </div>
+            </div>
+        <?php } ?>
 
     </div>
 </div>
+<?php } ?>
 
-<h3 class="text-muted">Adverts you may be interested in!</h3>
+<h3 class="text-muted">Most Recent Posts!</h3>
 <div class="card-deck-wrapper">
     <div class="card-deck">
         <?php

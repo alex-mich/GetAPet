@@ -20,12 +20,12 @@ $firstName = $_POST["firstName"];
 $lastName = $_POST["lastName"];
 $telephone = $_POST["telephone"];
 $address = $_POST["address"];
+$desired_pet = $_POST["desired_pet"];
 
 $file = addslashes($_FILES["image"]["tmp_name"]);
 $file = file_get_contents($file);
 
 $userRegister = new UserRegister();
-/** Create Verification Code */
 $emailCode = md5($username + microtime());
 
 $conn = DatabaseConnection::getInstance();
@@ -46,7 +46,7 @@ if ($userExists > 0) {
     header($url);
     ob_end_flush();
 } else {
-    $success = $userRegister->registerUser($username, $password, $userEmail, $accountType, $firstName, $lastName, $telephone, $address, $emailCode, $file, $conn);
+    $success = $userRegister->registerUser($username, $password, $userEmail, $accountType, $firstName, $lastName, $telephone, $address, $emailCode, $file, $desired_pet, $conn);
     if ($success == 1) {
         $sendMail = new SendEMail($userEmail, $emailCode, $firstName);
         $sendMail->sendMail();

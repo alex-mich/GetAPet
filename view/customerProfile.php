@@ -41,7 +41,8 @@ if (!$statement->prepare($query)) {
     $userPhoto = $r[9];
     $isActive = $r[10];
     $emailCode = $r[11];
-    $user = new User($userId, $firstName, $lastName, $username, $password, $email, $accountType, $address, $telephone, $userPhoto, $isActive, $emailCode);
+    $desiredPet = $r[12];
+    $user = new User($userId, $firstName, $lastName, $username, $password, $email, $accountType, $address, $telephone, $userPhoto, $isActive, $emailCode, $desiredPet);
 }
 
 ?>

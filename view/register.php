@@ -9,15 +9,16 @@
           integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
 </head>
 <body>
-<?php include 'header.php'?>
+<?php include 'header.php' ?>
 
 <div class="container col-xs-3">
     <h2>Register</h2>
     <?php
     if (isset($_SESSION['user_exists'])) {
         echo 'Please select a different username!';
-    }else if (isset($_SESSION['email_exists'])){
-        echo 'Email already exists exists!';    }
+    } else if (isset($_SESSION['email_exists'])) {
+        echo 'Email already exists exists!';
+    }
     ?>
     <form id="registerForm" action="../controller/registerController.php" method="post" enctype="multipart/form-data">
         <!-- Username -->
@@ -53,6 +54,21 @@
                 <span class="input-group-addon glyphicon glyphicon-lock"/>
             </div>
         </div>
+        <!-- Pet Preference -->
+        <select name="desired_pet">
+            <?php
+            $conn = DatabaseConnection::getInstance();
+            $result = $conn->query("SELECT DISTINCT pet_type FROM pets");
+            $data = array();
+
+            while ($row = $result->fetch_assoc()) {
+                $data[] = $row['pet_type'];
+            }
+
+            foreach ($data as $row) { ?>
+                <option value="<?= $row ?>"><?= $row ?></option>
+            <?php } ?>
+        </select>
         <!-- Account Type -->
         <div class="form-group">
             <label class="col-form-label">Account Type</label>
@@ -148,7 +164,7 @@
                 re_enter_psswd: {
                     validators: {
                         notEmpty: {
-                        message: 'Password field can not be empty'
+                            message: 'Password field can not be empty'
                         },
                         identical: {
                             field: 'password',
@@ -208,7 +224,8 @@
                     }
                 }
             }
-            });
-    });</script>
+        });
+    });
+</script>
 </body>
 </html>
